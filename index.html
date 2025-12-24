@@ -1,7 +1,597 @@
-<div style="position: relative; width: 100%; height: 0; padding-top: 56.2225%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAGk7OAC7bE/HL3DcwQ76SULwieE4kCYgw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas 2025 🎄</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            position: relative;
+            color: white;
+        }
+
+        .snow {
+            position: fixed;
+            top: -10px;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1.5em;
+            user-select: none;
+            animation: fall linear infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1.2s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            color: #fff;
+            text-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.8),
+                0 0 40px rgba(255, 100, 100, 0.6),
+                0 5px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 
+                    0 0 20px rgba(255, 215, 0, 0.8),
+                    0 0 40px rgba(255, 100, 100, 0.6),
+                    0 5px 15px rgba(0, 0, 0, 0.5);
+            }
+            50% {
+                text-shadow: 
+                    0 0 30px rgba(255, 215, 0, 1),
+                    0 0 60px rgba(255, 100, 100, 0.9),
+                    0 5px 20px rgba(0, 0, 0, 0.7);
+            }
+        }
+
+        .year {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffd700, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 8px;
+        }
+
+        .tree-container {
+            position: relative;
+            margin: 40px 0;
+            animation: fadeInUp 1.5s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tree {
+            width: 300px;
+            height: 350px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .tree-layer {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-style: solid;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+        }
+
+        .layer1 {
+            top: 0;
+            border-width: 0 60px 90px 60px;
+            border-color: transparent transparent #2d5016 transparent;
+        }
+
+        .layer2 {
+            top: 70px;
+            border-width: 0 80px 100px 80px;
+            border-color: transparent transparent #3a6b1f transparent;
+        }
+
+        .layer3 {
+            top: 150px;
+            border-width: 0 100px 110px 100px;
+            border-color: transparent transparent #2d5016 transparent;
+        }
+
+        .trunk {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(180deg, #654321, #4a3728);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .star {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            animation: starTwinkle 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px #ffd700);
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .ornament {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: ornamentGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes ornamentGlow {
+            0%, 100% {
+                box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+                transform: scale(1.1);
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 40px 50px;
+            max-width: 700px;
+            margin: 40px auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 1.8s ease 0.6s both;
+        }
+
+        .countdown {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .message {
+            text-align: center;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            line-height: 2;
+            margin-bottom: 35px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 157, 0.2));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            color: white;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 107, 157, 0.4));
+            border-color: rgba(255, 215, 0, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        button:active {
+            transform: translateY(-2px);
+        }
+
+        .firework {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .lights-string {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .light {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: lightBlink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes lightBlink {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 15px currentColor;
+            }
+            50% {
+                opacity: 0.4;
+                box-shadow: 0 0 5px currentColor;
+            }
+        }
+
+        .presents {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .present {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            animation: presentBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes presentBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .present-box {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .ribbon-v {
+            position: absolute;
+            width: 15%;
+            height: 100%;
+            left: 42.5%;
+            background: rgba(255, 215, 0, 0.8);
+        }
+
+        .ribbon-h {
+            position: absolute;
+            width: 100%;
+            height: 15%;
+            top: 42.5%;
+            background: rgba(255, 215, 0, 0.8);
+        }
+
+        .bow {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                padding: 30px 25px;
+                margin: 30px 20px;
+            }
+
+            button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+
+            .tree {
+                width: 250px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="snow" id="snow"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Merry Christmas</h1>
+            <div class="year">2025</div>
+        </div>
+
+        <div class="tree-container">
+            <div class="tree">
+                <div class="star">⭐</div>
+                <div class="tree-layer layer1"></div>
+                <div class="tree-layer layer2"></div>
+                <div class="tree-layer layer3"></div>
+                <div class="trunk"></div>
+                <div class="lights-string" id="lights"></div>
+            </div>
+        </div>
+
+        <div class="presents">
+            <div class="present" style="animation-delay: 0s;">
+                <div class="present-box" style="background: linear-gradient(135deg, #ff6b6b, #c92a2a);">
+                    <div class="ribbon-v"></div>
+                    <div class="ribbon-h"></div>
+                </div>
+                <div class="bow">🎀</div>
+            </div>
+            <div class="present" style="animation-delay: 0.3s;">
+                <div class="present-box" style="background: linear-gradient(135deg, #4dabf7, #1971c2);">
+                    <div class="ribbon-v"></div>
+                    <div class="ribbon-h"></div>
+                </div>
+                <div class="bow">🎀</div>
+            </div>
+            <div class="present" style="animation-delay: 0.6s;">
+                <div class="present-box" style="background: linear-gradient(135deg, #51cf66, #2b8a3e);">
+                    <div class="ribbon-v"></div>
+                    <div class="ribbon-h"></div>
+                </div>
+                <div class="bow">🎀</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="countdown" id="countdown"></div>
+            <p class="message">
+                🎄 Chúc bạn một mùa Giáng Sinh thật ấm áp, tràn đầy niềm vui và hạnh phúc bên người thân yêu. 
+                Mong năm mới 2027 sẽ mang đến cho bạn nhiều sức khỏe, thành công và những điều tốt đẹp nhất! 🎅✨
+            </p>
+            <div class="buttons">
+                <button onclick="createFireworks()">🎆 Pháo Hoa</button>
+                <button onclick="addMoreSnow()">❄️ Tuyết Rơi</button>
+                <button onclick="playMusic()">🎵 Nhạc Noel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tạo tuyết rơi
+        function createSnowflake() {
+            const snow = document.getElementById('snow');
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
+            snowflake.style.left = Math.random() * 100 + '%';
+            snowflake.style.animationDuration = Math.random() * 3 + 5 + 's';
+            snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+            snowflake.style.fontSize = Math.random() * 1 + 0.8 + 'em';
+            snow.appendChild(snowflake);
+
+            setTimeout(() => snowflake.remove(), 8000);
+        }
+
+        setInterval(createSnowflake, 150);
+
+        // Tạo đèn trang trí trên cây
+        function createLights() {
+            const lightsContainer = document.getElementById('lights');
+            const colors = ['#ff0000', '#00ff00', '#0066ff', '#ffd700', '#ff69b4', '#00ffff'];
+            
+            for (let i = 0; i < 30; i++) {
+                const light = document.createElement('div');
+                light.classList.add('light');
+                light.style.background = colors[Math.floor(Math.random() * colors.length)];
+                light.style.color = colors[Math.floor(Math.random() * colors.length)];
+                light.style.left = 20 + Math.random() * 60 + '%';
+                light.style.top = 10 + Math.random() * 70 + '%';
+                light.style.animationDelay = Math.random() * 1.5 + 's';
+                lightsContainer.appendChild(light);
+            }
+        }
+
+        createLights();
+
+        // Tạo quả cầu trang trí
+        function createOrnaments() {
+            const tree = document.querySelector('.tree');
+            const colors = ['#ff0000', '#ffd700', '#0066ff', '#ff69b4', '#00ff00'];
+            
+            for (let i = 0; i < 20; i++) {
+                const ornament = document.createElement('div');
+                ornament.classList.add('ornament');
+                ornament.style.background = colors[Math.floor(Math.random() * colors.length)];
+                ornament.style.color = colors[Math.floor(Math.random() * colors.length)];
+                ornament.style.left = 25 + Math.random() * 50 + '%';
+                ornament.style.top = 15 + Math.random() * 65 + '%';
+                ornament.style.animationDelay = Math.random() * 2 + 's';
+                tree.appendChild(ornament);
+            }
+        }
+
+        createOrnaments();
+
+        // Đếm ngược
+        function updateCountdown() {
+            const christmas = new Date('December 25, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = christmas - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '🎉 Giáng Sinh Đã Đến! 🎉';
+            } else {
+                document.getElementById('countdown').innerHTML = 
+                    `⏰ Còn ${days} ngày ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Pháo hoa
+        function createFireworks() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight * 0.6;
+                    createFirework(x, y);
+                }, i * 400);
+            }
+        }
+
+        function createFirework(x, y) {
+            const colors = ['#ff0000', '#ffd700', '#0066ff', '#ff69b4', '#00ff00', '#ff00ff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.width = '8px';
+                particle.style.height = '8px';
+                particle.style.borderRadius = '50%';
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 10px ${color}`;
+                document.body.appendChild(particle);
+
+                const angle = (Math.PI * 2 * i) / 30;
+                const velocity = 2 + Math.random() * 3;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+
+                let posX = x, posY = y;
+                let opacity = 1;
+
+                const animate = () => {
+                    posX += vx;
+                    posY += vy;
+                    opacity -= 0.015;
+                    particle.style.left = posX + 'px';
+                    particle.style.top = posY + 'px';
+                    particle.style.opacity = opacity;
+
+                    if (opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        particle.remove();
+                    }
+                };
+                animate();
+            }
+        }
+
+        // Thêm tuyết
+        function addMoreSnow() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createSnowflake, i * 50);
+            }
+        }
+
+        // Nhạc
+        function playMusic() {
+            alert('🎵 Hãy bật nhạc Giáng Sinh yêu thích của bạn và tận hưởng không khí lễ hội! 🎄');
+        }
+
+        // Click để tạo pháo hoa
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'BUTTON') {
+                createFirework(e.clientX, e.clientY);
+            }
+        });
+    </script>
+</body>
+</html>
