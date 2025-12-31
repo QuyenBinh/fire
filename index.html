@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merry Christmas 2025 🎄</title>
+    <title>Đón Năm Mới 2026 Rực Rỡ! 🎆</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap');
+        :root {
+            /* Màu nền tối để pháo hoa nổi bật */
+            --bg-color: #020215; 
+            --text-color: #ffffff;
+            /* Các màu neon điểm nhấn */
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --neon-gold: #ffd700;
+        }
 
         * {
             margin: 0;
@@ -14,584 +23,481 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            overflow: hidden;
             position: relative;
-            color: white;
         }
 
-        .snow {
-            position: fixed;
-            top: -10px;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        .snowflake {
+        /* Canvas phủ toàn màn hình */
+        #fireworks-canvas {
             position: absolute;
-            top: -10px;
-            color: white;
-            font-size: 1.5em;
-            user-select: none;
-            animation: fall linear infinite;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .container {
-            position: relative;
-            z-index: 10;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            animation: fadeInDown 1.2s ease;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(3.5rem, 10vw, 8rem);
-            color: #fff;
-            text-shadow: 
-                0 0 20px rgba(255, 215, 0, 0.8),
-                0 0 40px rgba(255, 100, 100, 0.6),
-                0 5px 15px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                text-shadow: 
-                    0 0 20px rgba(255, 215, 0, 0.8),
-                    0 0 40px rgba(255, 100, 100, 0.6),
-                    0 5px 15px rgba(0, 0, 0, 0.5);
-            }
-            50% {
-                text-shadow: 
-                    0 0 30px rgba(255, 215, 0, 1),
-                    0 0 60px rgba(255, 100, 100, 0.9),
-                    0 5px 20px rgba(0, 0, 0, 0.7);
-            }
-        }
-
-        .year {
-            font-size: clamp(1.5rem, 4vw, 3rem);
-            font-weight: 700;
-            background: linear-gradient(135deg, #ffd700, #ff6b9d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 8px;
-        }
-
-        .tree-container {
-            position: relative;
-            margin: 40px 0;
-            animation: fadeInUp 1.5s ease 0.3s both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .tree {
-            width: 300px;
-            height: 350px;
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .tree-layer {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-style: solid;
-            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
-        }
-
-        .layer1 {
             top: 0;
-            border-width: 0 60px 90px 60px;
-            border-color: transparent transparent #2d5016 transparent;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            cursor: crosshair; /* Con trỏ nhắm bắn */
         }
 
-        .layer2 {
-            top: 70px;
-            border-width: 0 80px 100px 80px;
-            border-color: transparent transparent #3a6b1f transparent;
-        }
-
-        .layer3 {
-            top: 150px;
-            border-width: 0 100px 110px 100px;
-            border-color: transparent transparent #2d5016 transparent;
-        }
-
-        .trunk {
+        /* Container chứa nội dung chữ */
+        .content-container {
             position: absolute;
-            bottom: 0;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 60px;
-            background: linear-gradient(180deg, #654321, #4a3728);
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .star {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 3rem;
-            animation: starTwinkle 1.5s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px #ffd700);
-        }
-
-        @keyframes starTwinkle {
-            0%, 100% {
-                transform: translateX(-50%) scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: translateX(-50%) scale(1.2);
-                opacity: 0.8;
-            }
-        }
-
-        .ornament {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            animation: ornamentGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes ornamentGlow {
-            0%, 100% {
-                box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
-                transform: scale(1.1);
-            }
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            padding: 40px 50px;
-            max-width: 700px;
-            margin: 40px auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            animation: fadeInUp 1.8s ease 0.6s both;
-        }
-
-        .countdown {
+            transform: translate(-50%, -50%);
+            z-index: 10; /* Nằm trên canvas */
             text-align: center;
-            font-size: clamp(1.8rem, 4vw, 3rem);
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            pointer-events: none; /* Để click xuyên qua container xuống canvas */
+        }
+        
+        /* Cho phép click vào các nút hoặc input nếu có trong tương lai */
+        .content-container > * {
+             pointer-events: auto;
+        }
+
+        /* Hiệu ứng chữ Neon */
+        .neon-text {
+            color: #fff;
+            text-shadow:
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #fff,
+                0 0 42px var(--neon-pink),
+                0 0 82px var(--neon-pink),
+                0 0 92px var(--neon-pink),
+                0 0 102px var(--neon-pink),
+                0 0 151px var(--neon-pink);
+            animation: neonFlicker 1.5s infinite alternate;
+        }
+
+        @keyframes neonFlicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow:
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #fff,
+                0 0 42px var(--neon-pink),
+                0 0 82px var(--neon-pink);
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+
+        .neon-blue {
+             text-shadow:
+                0 0 7px #fff,
+                0 0 42px var(--neon-blue),
+                0 0 82px var(--neon-blue);
+                animation: none;
+        }
+
+        h1.main-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* Bộ đếm ngược */
+        #countdown-box {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .time-unit {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 80px;
+        }
+
+        .number {
+            font-size: 2.5rem;
             font-weight: 700;
-            color: #ffd700;
-            margin-bottom: 30px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            display: block;
+            color: var(--neon-blue);
         }
 
-        .message {
-            text-align: center;
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            line-height: 2;
-            margin-bottom: 35px;
-            color: rgba(255, 255, 255, 0.95);
+        .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+        /* Phần chúc mừng (ẩn ban đầu) */
+        #greeting-box {
+            display: none;
+            animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
-        button {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 157, 0.2));
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            color: white;
-            padding: 15px 35px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
-        button:hover {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 107, 157, 0.4));
-            border-color: rgba(255, 215, 0, 0.8);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        .big-2026 {
+            font-size: 10rem;
+            line-height: 1;
+            margin: 1rem 0;
+            color: var(--neon-gold);
+            text-shadow: 0 0 20px var(--neon-gold), 0 0 40px var(--neon-gold);
+        }
+        
+        .wishes {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
         }
 
-        button:active {
-            transform: translateY(-2px);
-        }
-
-        .firework {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1000;
-        }
-
-        .lights-string {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .light {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            animation: lightBlink 1.5s ease-in-out infinite;
-        }
-
-        @keyframes lightBlink {
-            0%, 100% {
-                opacity: 1;
-                box-shadow: 0 0 15px currentColor;
-            }
-            50% {
-                opacity: 0.4;
-                box-shadow: 0 0 5px currentColor;
-            }
-        }
-
-        .presents {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .present {
-            width: 60px;
-            height: 60px;
-            position: relative;
-            animation: presentBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes presentBounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .present-box {
-            width: 100%;
-            height: 100%;
-            border-radius: 5px;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .ribbon-v {
-            position: absolute;
-            width: 15%;
-            height: 100%;
-            left: 42.5%;
-            background: rgba(255, 215, 0, 0.8);
-        }
-
-        .ribbon-h {
-            position: absolute;
-            width: 100%;
-            height: 15%;
-            top: 42.5%;
-            background: rgba(255, 215, 0, 0.8);
-        }
-
-        .bow {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2rem;
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .card {
-                padding: 30px 25px;
-                margin: 30px 20px;
-            }
-
-            button {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-
-            .tree {
-                width: 250px;
-                height: 300px;
-            }
+            h1.main-title { font-size: 2.2rem; }
+            .big-2026 { font-size: 6rem; }
+            #countdown-box { gap: 0.5rem; }
+            .time-unit { min-width: 60px; padding: 0.8rem; }
+            .number { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
-    <div class="snow" id="snow"></div>
 
-    <div class="container">
-        <div class="header">
-            <h1>Merry Christmas</h1>
-            <div class="year">2025</div>
+    <canvas id="fireworks-canvas"></canvas>
+
+    <div class="content-container">
+        <div id="pre-celebration">
+            <h1 class="main-title neon-text">Sắp sang 2026! 🚀</h1>
+            <p style="font-size: 1.2rem;">Chuẩn bị đón khoảnh khắc giao thừa...</p>
+            
+            <div id="countdown-box">
+                <div class="time-unit">
+                    <span class="number neon-blue" id="days">00</span>
+                    <span class="label">Ngày</span>
+                </div>
+                <div class="time-unit">
+                    <span class="number neon-blue" id="hours">00</span>
+                    <span class="label">Giờ</span>
+                </div>
+                <div class="time-unit">
+                    <span class="number neon-blue" id="minutes">00</span>
+                    <span class="label">Phút</span>
+                </div>
+                <div class="time-unit">
+                    <span class="number neon-blue" id="seconds">00</span>
+                    <span class="label">Giây</span>
+                </div>
+            </div>
+             <p style="margin-top: 1rem; opacity: 0.7; font-size: 0.9rem;">(Click vào màn hình để bắn pháo hoa!)</p>
         </div>
 
-        <div class="tree-container">
-            <div class="tree">
-                <div class="star">⭐</div>
-                <div class="tree-layer layer1"></div>
-                <div class="tree-layer layer2"></div>
-                <div class="tree-layer layer3"></div>
-                <div class="trunk"></div>
-                <div class="lights-string" id="lights"></div>
-            </div>
-        </div>
-
-        <div class="presents">
-            <div class="present" style="animation-delay: 0s;">
-                <div class="present-box" style="background: linear-gradient(135deg, #ff6b6b, #c92a2a);">
-                    <div class="ribbon-v"></div>
-                    <div class="ribbon-h"></div>
-                </div>
-                <div class="bow">🎀</div>
-            </div>
-            <div class="present" style="animation-delay: 0.3s;">
-                <div class="present-box" style="background: linear-gradient(135deg, #4dabf7, #1971c2);">
-                    <div class="ribbon-v"></div>
-                    <div class="ribbon-h"></div>
-                </div>
-                <div class="bow">🎀</div>
-            </div>
-            <div class="present" style="animation-delay: 0.6s;">
-                <div class="present-box" style="background: linear-gradient(135deg, #51cf66, #2b8a3e);">
-                    <div class="ribbon-v"></div>
-                    <div class="ribbon-h"></div>
-                </div>
-                <div class="bow">🎀</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="countdown" id="countdown"></div>
-            <p class="message">
-                🎄 Chúc bạn một mùa Giáng Sinh thật ấm áp, tràn đầy niềm vui và hạnh phúc bên người thân yêu. 
-                Mong năm mới 2027 sẽ mang đến cho bạn nhiều sức khỏe, thành công và những điều tốt đẹp nhất! 🎅✨
-            </p>
-            <div class="buttons">
-                <button onclick="createFireworks()">🎆 Pháo Hoa</button>
-                <button onclick="addMoreSnow()">❄️ Tuyết Rơi</button>
-                <button onclick="playMusic()">🎵 Nhạc Noel</button>
+        <div id="greeting-box">
+            <h1 class="main-title neon-text">CHÚC MỪNG NĂM MỚI!</h1>
+            <div class="big-2026">2026</div>
+            <div class="wishes">
+                🎆 Vạn sự như ý - Tỷ sự như mơ 🎆<br>
+                Code hay không bug - Tiền về đầy túi<br>
+                Happy New Year! 🥂🔥
             </div>
         </div>
     </div>
 
     <script>
-        // Tạo tuyết rơi
-        function createSnowflake() {
-            const snow = document.getElementById('snow');
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.innerHTML = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
-            snowflake.style.left = Math.random() * 100 + '%';
-            snowflake.style.animationDuration = Math.random() * 3 + 5 + 's';
-            snowflake.style.opacity = Math.random() * 0.6 + 0.4;
-            snowflake.style.fontSize = Math.random() * 1 + 0.8 + 'em';
-            snow.appendChild(snowflake);
+        // =================================================================
+        // CẤU HÌNH THỜI GIAN VÀ CHẾ ĐỘ TEST
+        // =================================================================
+        // Thời gian đích: 00:00:00 ngày 1/1/2026
+        const targetDate = new Date(2026, 0, 1, 0, 0, 0).getTime();
 
-            setTimeout(() => snowflake.remove(), 8000);
+        // >>> QUAN TRỌNG: Đặt thành TRUE để xem ngay kết quả chúc mừng <<<
+        // >>> Đặt thành FALSE để chạy đếm ngược thật đến 2026 <<<
+        const DEBUG_MODE = true; 
+
+        let finalDate = targetDate;
+        if (DEBUG_MODE) {
+            console.log("Đang chạy chế độ TEST. Sẽ kích hoạt sau 3 giây.");
+            // Kích hoạt sau 3 giây tính từ lúc mở trang
+            finalDate = new Date().getTime() + 3000;
         }
 
-        setInterval(createSnowflake, 150);
+        // DOM Elements
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const preCelebrationBox = document.getElementById('pre-celebration');
+        const greetingBox = document.getElementById('greeting-box');
 
-        // Tạo đèn trang trí trên cây
-        function createLights() {
-            const lightsContainer = document.getElementById('lights');
-            const colors = ['#ff0000', '#00ff00', '#0066ff', '#ffd700', '#ff69b4', '#00ffff'];
-            
-            for (let i = 0; i < 30; i++) {
-                const light = document.createElement('div');
-                light.classList.add('light');
-                light.style.background = colors[Math.floor(Math.random() * colors.length)];
-                light.style.color = colors[Math.floor(Math.random() * colors.length)];
-                light.style.left = 20 + Math.random() * 60 + '%';
-                light.style.top = 10 + Math.random() * 70 + '%';
-                light.style.animationDelay = Math.random() * 1.5 + 's';
-                lightsContainer.appendChild(light);
-            }
-        }
+        let isCelebrationTime = false;
 
-        createLights();
+        function formatTime(time) { return time < 10 ? `0${time}` : time; }
 
-        // Tạo quả cầu trang trí
-        function createOrnaments() {
-            const tree = document.querySelector('.tree');
-            const colors = ['#ff0000', '#ffd700', '#0066ff', '#ff69b4', '#00ff00'];
-            
-            for (let i = 0; i < 20; i++) {
-                const ornament = document.createElement('div');
-                ornament.classList.add('ornament');
-                ornament.style.background = colors[Math.floor(Math.random() * colors.length)];
-                ornament.style.color = colors[Math.floor(Math.random() * colors.length)];
-                ornament.style.left = 25 + Math.random() * 50 + '%';
-                ornament.style.top = 15 + Math.random() * 65 + '%';
-                ornament.style.animationDelay = Math.random() * 2 + 's';
-                tree.appendChild(ornament);
-            }
-        }
-
-        createOrnaments();
-
-        // Đếm ngược
         function updateCountdown() {
-            const christmas = new Date('December 25, 2026 00:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = christmas - now;
+            const currentTime = new Date().getTime();
+            const difference = finalDate - currentTime;
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            if (distance < 0) {
-                document.getElementById('countdown').innerHTML = '🎉 Giáng Sinh Đã Đến! 🎉';
-            } else {
-                document.getElementById('countdown').innerHTML = 
-                    `⏰ Còn ${days} ngày ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            if (difference <= 0) {
+                clearInterval(countdownInterval);
+                triggerCelebration();
+                return;
             }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            daysEl.innerHTML = formatTime(days);
+            hoursEl.innerHTML = formatTime(hours);
+            minutesEl.innerHTML = formatTime(minutes);
+            secondsEl.innerHTML = formatTime(seconds);
         }
 
-        setInterval(updateCountdown, 1000);
+        function triggerCelebration() {
+            isCelebrationTime = true;
+            preCelebrationBox.style.display = 'none';
+            greetingBox.style.display = 'block';
+            // Tăng tốc độ bắn pháo hoa tự động
+            autoLaunchDelay = 300; 
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Pháo hoa
-        function createFireworks() {
-            for (let i = 0; i < 8; i++) {
-                setTimeout(() => {
-                    const x = Math.random() * window.innerWidth;
-                    const y = Math.random() * window.innerHeight * 0.6;
-                    createFirework(x, y);
-                }, i * 400);
-            }
+        // =================================================================
+        // HỆ THỐNG PHÁO HOA (FIREWORKS ENGINE) - JS THUẦN
+        // =================================================================
+        const canvas = document.getElementById('fireworks-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Danh sách các quả pháo đang bay và các hạt nổ
+        let fireworks = [];
+        let particles = [];
+        let hue = 120; // Màu cơ bản, sẽ xoay vòng
+        let autoLaunchDelay = 1500; // Thời gian chờ giữa các lần tự bắn (ms)
+        let lastLaunchTime = 0;
+
+        // Hàm tiện ích random
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
         }
 
-        function createFirework(x, y) {
-            const colors = ['#ff0000', '#ffd700', '#0066ff', '#ff69b4', '#00ff00', '#ff00ff'];
-            const color = colors[Math.floor(Math.random() * colors.length)];
+        // Tính khoảng cách
+        function calculateDistance(p1x, p1y, p2x, p2y) {
+            let xDistance = p1x - p2x;
+            let yDistance = p1y - p2y;
+            return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+        }
+
+        // --- CLASS: FIREWORK (Quả pháo bay lên) ---
+        function Firework(sx, sy, tx, ty) {
+            // Tọa độ hiện tại
+            this.x = sx;
+            this.y = sy;
+            // Tọa độ bắt đầu
+            this.sx = sx;
+            this.sy = sy;
+            // Tọa độ đích (điểm nổ)
+            this.tx = tx;
+            this.ty = ty;
+            // Khoảng cách đến đích
+            this.distanceToTarget = calculateDistance(sx, sy, tx, ty);
+            this.distanceTraveled = 0;
+            // Tạo vệt đuôi (lưu lại vài tọa độ cũ)
+            this.coordinates = [];
+            this.coordinateCount = 3;
+            while(this.coordinateCount--) {
+                this.coordinates.push([this.x, this.y]);
+            }
+            this.angle = Math.atan2(ty - sy, tx - sx);
+            this.speed = 2;
+            this.acceleration = 1.05; // Gia tốc
+            this.brightness = random(50, 70);
+            this.targetRadius = 1; // Vòng tròn nhỏ ở đích đến
+        }
+
+        Firework.prototype.update = function(index) {
+            // Xóa tọa độ cũ nhất, thêm tọa độ mới nhất vào đuôi
+            this.coordinates.pop();
+            this.coordinates.unshift([this.x, this.y]);
             
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'firework';
-                particle.style.left = x + 'px';
-                particle.style.top = y + 'px';
-                particle.style.width = '8px';
-                particle.style.height = '8px';
-                particle.style.borderRadius = '50%';
-                particle.style.background = color;
-                particle.style.boxShadow = `0 0 10px ${color}`;
-                document.body.appendChild(particle);
-
-                const angle = (Math.PI * 2 * i) / 30;
-                const velocity = 2 + Math.random() * 3;
-                const vx = Math.cos(angle) * velocity;
-                const vy = Math.sin(angle) * velocity;
-
-                let posX = x, posY = y;
-                let opacity = 1;
-
-                const animate = () => {
-                    posX += vx;
-                    posY += vy;
-                    opacity -= 0.015;
-                    particle.style.left = posX + 'px';
-                    particle.style.top = posY + 'px';
-                    particle.style.opacity = opacity;
-
-                    if (opacity > 0) {
-                        requestAnimationFrame(animate);
-                    } else {
-                        particle.remove();
-                    }
-                };
-                animate();
+            // Hiệu ứng nhấp nháy vòng tròn đích
+            if (this.targetRadius < 8) {
+                this.targetRadius += 0.3;
+            } else {
+                this.targetRadius = 1;
+            }
+            
+            // Tăng tốc
+            this.speed *= this.acceleration;
+            
+            // Tính vận tốc theo góc
+            let vx = Math.cos(this.angle) * this.speed;
+            let vy = Math.sin(this.angle) * this.speed;
+            // Cập nhật vị trí
+            this.distanceTraveled = calculateDistance(this.sx, this.sy, this.x + vx, this.y + vy);
+            
+            // Nếu đã bay đến đích (hoặc vượt quá)
+            if (this.distanceTraveled >= this.distanceToTarget) {
+                // Tạo vụ nổ
+                createParticles(this.tx, this.ty);
+                // Xóa quả pháo này
+                fireworks.splice(index, 1);
+            } else {
+                this.x += vx;
+                this.y += vy;
             }
         }
 
-        // Thêm tuyết
-        function addMoreSnow() {
-            for (let i = 0; i < 50; i++) {
-                setTimeout(createSnowflake, i * 50);
+        Firework.prototype.draw = function() {
+            ctx.beginPath();
+            // Vẽ vệt đuôi bằng cách nối điểm cuối cùng và điểm hiện tại
+            ctx.moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][1]);
+            ctx.lineTo(this.x, this.y);
+            ctx.strokeStyle = 'hsl(' + hue + ', 100%, ' + this.brightness + '%)';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // Vẽ vòng tròn nhắm mục tiêu (chỉ hiện khi debug hoặc muốn style lạ)
+            // ctx.beginPath();
+            // ctx.arc(this.tx, this.ty, this.targetRadius, 0, Math.PI * 2);
+            // ctx.stroke();
+        }
+
+        // --- CLASS: PARTICLE (Hạt nổ) ---
+        function Particle(x, y) {
+            this.x = x;
+            this.y = y;
+            this.coordinates = [];
+            this.coordinateCount = 5; // Đuôi dài hơn
+            while(this.coordinateCount--) {
+                this.coordinates.push([this.x, this.y]);
+            }
+            // Bắn ra mọi hướng ngẫu nhiên
+            this.angle = random(0, Math.PI * 2);
+            this.speed = random(1, 10);
+            // Ma sát để làm chậm lại
+            this.friction = 0.95;
+            // Trọng lực kéo xuống
+            this.gravity = 1;
+            // Màu sắc (lấy màu hiện tại + biến thiên một chút)
+            this.hue = random(hue - 20, hue + 20);
+            this.brightness = random(50, 80);
+            this.alpha = 1; // Độ trong suốt
+            this.decay = random(0.015, 0.03); // Tốc độ mờ dần
+        }
+
+        Particle.prototype.update = function(index) {
+            this.coordinates.pop();
+            this.coordinates.unshift([this.x, this.y]);
+            // Chậm lại
+            this.speed *= this.friction;
+            // Di chuyển
+            this.x += Math.cos(this.angle) * this.speed;
+            this.y += Math.sin(this.angle) * this.speed + this.gravity;
+            // Mờ dần
+            this.alpha -= this.decay;
+            
+            // Nếu mờ hết thì xóa
+            if (this.alpha <= this.decay) {
+                particles.splice(index, 1);
             }
         }
 
-        // Nhạc
-        function playMusic() {
-            alert('🎵 Hãy bật nhạc Giáng Sinh yêu thích của bạn và tận hưởng không khí lễ hội! 🎄');
+        Particle.prototype.draw = function() {
+            ctx. beginPath();
+            ctx.moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][1]);
+            ctx.lineTo(this.x, this.y);
+            // Màu sắc HSL với độ trong suốt Alpha
+            ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + this.alpha + ')';
+            ctx.lineWidth = 2;
+            // Hiệu ứng sáng lóa
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = ctx.strokeStyle;
+            ctx.stroke();
+            ctx.shadowBlur = 0; // Reset shadow
         }
 
-        // Click để tạo pháo hoa
-        document.addEventListener('click', (e) => {
-            if (e.target.tagName !== 'BUTTON') {
-                createFirework(e.clientX, e.clientY);
+        // Hàm tạo một vụ nổ (nhiều hạt)
+        function createParticles(x, y) {
+            let particleCount = 50; // Số lượng hạt mỗi vụ nổ
+            while(particleCount--) {
+                particles.push(new Particle(x, y));
             }
+        }
+
+        // Vòng lặp hoạt hình chính
+        function loop() {
+            requestAnimationFrame(loop);
+            hue += 0.5; // Xoay vòng màu sắc theo thời gian
+
+            // Xóa canvas với màu nền bán trong suốt để tạo hiệu ứng vệt mờ (motion trail) đẹp mắt
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Độ mờ càng thấp, vệt càng dài
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Đặt lại chế độ vẽ bình thường
+            ctx.globalCompositeOperation = 'lighter';
+
+            // Cập nhật và vẽ các quả pháo đang bay
+            let i = fireworks.length;
+            while(i--) {
+                fireworks[i].draw();
+                fireworks[i].update(i);
+            }
+
+            // Cập nhật và vẽ các hạt nổ
+            let j = particles.length;
+            while(j--) {
+                particles[j].draw();
+                particles[j].update(j);
+            }
+
+            // Logic tự động bắn
+            let currentTime = new Date().getTime();
+            if (currentTime - lastLaunchTime > autoLaunchDelay) {
+                // Bắn từ dưới đáy màn hình lên một điểm ngẫu nhiên ở nửa trên
+                let startX = canvas.width / 2; // Bắn từ giữa dưới
+                if (isCelebrationTime) startX = random(0, canvas.width); // Khi giao thừa thì bắn từ khắp nơi
+
+                fireworks.push(new Firework(
+                    startX, 
+                    canvas.height, 
+                    random(0, canvas.width), 
+                    random(0, canvas.height / 2)
+                ));
+                lastLaunchTime = currentTime;
+            }
+        }
+
+        // Sự kiện click chuột để bắn pháo
+        canvas.addEventListener('click', (e) => {
+            // Bắn từ đáy lên vị trí click
+            fireworks.push(new Firework(canvas.width / 2, canvas.height, e.clientX, e.clientY));
         });
+
+        // Resize canvas khi đổi kích thước cửa sổ
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Bắt đầu vòng lặp pháo hoa
+        loop();
+
     </script>
 </body>
 </html>
