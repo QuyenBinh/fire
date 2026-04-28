@@ -1,14 +1,75 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  <script type="module" crossorigin src="https://quyenbinh.github.io/fire/assets/index-D61RfztM.js"></script>
-  <link rel="stylesheet" crossorigin href="https://quyenbinh.github.io/fire/assets/index-keozI6An.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Công ty TNHH Tư Vấn Better Law</title>
+  <meta name="description" content="Công ty luật chuyên nghiệp, cung cấp dịch vụ tư vấn doanh nghiệp, dân sự, sở hữu trí tuệ." />
+  <!-- Sử dụng Tailwind CDN cho nhanh gọn -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#023020',
+              gold: '#D4AF37',
+              goldLight: '#E8D38F'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+    /* Custom scrollbar for chat */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* --- SCROLL ANIMATIONS --- */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Stagger delays */
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-400 { transition-delay: 400ms; }
+    .delay-500 { transition-delay: 500ms; }
+  </style>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+        "@emailjs/browser": "https://aistudiocdn.com/@emailjs/browser@^4.4.1"
+      }
+    }
+  </script>
+  <script type="module" crossorigin src="/assets/index-BtTTgA4H.js"></script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 antialiased">
 <div id="root"></div>
 </body>
 </html>
-
